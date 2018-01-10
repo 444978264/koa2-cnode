@@ -1,0 +1,22 @@
+{
+  "name": "koa2_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/444978264/koa2-cnode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/444978264/koa2-cnode/issues"
+  },
+  "homepage": "https://github.com/444978264/koa2-cnode#readme"
+}
