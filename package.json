@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/444978264/koa2-cnode/issues"
   },
-  "homepage": "https://github.com/444978264/koa2-cnode#readme"
+  "homepage": "https://github.com/444978264/koa2-cnode#readme",
+  "dependencies": {
+    "koa-router": "^7.3.0"
+  }
 }
