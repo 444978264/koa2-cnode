@@ -9,17 +9,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/444978264/koa2-cnode.git"
-  },
-  "author": "",
+  "repository": "git+https://github.com/444978264/koa2-cnode.git",
+  "author": "cyf <444978264@qq.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/444978264/koa2-cnode/issues"
   },
   "homepage": "https://github.com/444978264/koa2-cnode#readme",
   "dependencies": {
+    "koa": "^2.4.1",
     "koa-router": "^7.3.0"
   }
 }
