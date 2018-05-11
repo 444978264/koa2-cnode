@@ -11,11 +11,11 @@ const logger = async(ctx, next) => {
 app.use(logger);
 
 // 静态资源
-// app.use(staticSource(require('path').join(__dirname, './static')))
+app.use(staticSource(require('path').join(__dirname, './static')))
 
-// app.use(bodyParser());
+app.use(bodyParser());
 
-// app.use(Router.routes());
+app.use(Router.routes());
 
 app.use(async(ctx, next) => {
     let url = ctx.url;
