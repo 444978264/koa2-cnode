@@ -1,25 +1,16 @@
 {
-  "name": "koa2_node",
+  "name": "koa-demo",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "directories": {
-    "lib": "lib"
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-busboy": "^1.1.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "git+https://github.com/444978264/koa2-cnode.git",
-  "author": "cyf <444978264@qq.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/444978264/koa2-cnode/issues"
-  },
-  "homepage": "https://github.com/444978264/koa2-cnode#readme",
-  "dependencies": {
-    "koa": "^2.4.1",
-    "koa-bodyparser": "^4.2.0",
-    "koa-router": "^7.3.0",
-    "koa-static": "^4.0.2"
+    "start": "nodemon --inspect app.js"
   }
 }

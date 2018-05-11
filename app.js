@@ -1,66 +1,41 @@
-const Koa = require('koa')
-const app = new Koa()
-const bodyParser = require('koa-bodyparser')
+const koa = require('koa');
+const app = new koa();
+const bodyParser = require('koa-bodyparser');
+const staticSource = require('koa-static');
+const Router = require('./router/router');
 
-app.use(bodyParser())
+const logger = async(ctx, next) => {
+    console.log(`${Date.now()} ${ctx.request.method}:${ctx.request.url}`);
+    await next();
+}
+app.use(logger);
 
-app.use(async (ctx) => {
+// 静态资源
+// app.use(staticSource(require('path').join(__dirname, './static')))
 
-    if (ctx.url === '/' && ctx.method === 'GET') {
-        // 当GET请求时候返回表单页面
-        let html = `
-      <h1>koa2 request post demo</h1>
-      <form method="POST" action="/">
-        <p>userName</p>
-        <input name="userName" /><br/>
-        <p>nickName</p>
-        <input name="nickName" /><br/>
-        <p>email</p>
-        <input name="email" /><br/>
-        <button type="submit">submit</button>
-      </form>
-    `
-        ctx.body = html
-    } else if (ctx.url === '/' && ctx.method === 'POST') {
-        // 当POST请求的时候，解析POST表单里的数据，并显示出来
-        console.log(ctx.request.body,ctx.query)
-        ctx.body = ctx.request.body
-    } else {
-        // 其他请求显示404
-        ctx.body = '<h1>404！！！ o(╯□╰)o</h1>'
+// app.use(bodyParser());
+
+// app.use(Router.routes());
+
+app.use(async(ctx, next) => {
+    let url = ctx.url;
+    console.log(url)
+    let request = ctx.request;
+    let query = request.query;
+    let query_string = request.querystring;
+
+    let ctx_query = ctx.request;
+    let ctx_querystring = ctx.querystring;
+
+    ctx.body = {
+        url,
+        request,
+        query,
+        query_string,
+        ctx_query,
+        ctx_querystring
     }
+
 })
 
-// 解析上下文里node原生请求的POST参数
-function parsePostData(ctx) {
-    return new Promise((resolve, reject) => {
-        try {
-            let postdata = "";
-            ctx.req.addListener('data', (data) => {
-                postdata += data
-            })
-            ctx.req.addListener("end", function () {
-                let parseData = parseQueryStr(postdata)
-                resolve(parseData)
-            })
-        } catch (err) {
-            reject(err)
-        }
-    })
-}
-
-// 将POST请求参数字符串解析成JSON
-function parseQueryStr(queryStr) {
-    let queryData = {}
-    let queryStrList = queryStr.split('&')
-    console.log(queryStrList)
-    for (let [index, queryStr] of queryStrList.entries()) {
-        let itemList = queryStr.split('=')
-        queryData[itemList[0]] = decodeURIComponent(itemList[1])
-    }
-    return queryData
-}
-
-app.listen(3000, () => {
-    console.log('[demo] request post is starting at port 3000')
-})
+app.listen(3000)
