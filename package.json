@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "koa": "^2.5.1",
+    "koa-better-http-proxy": "^0.2.4",
     "koa-bodyparser": "^4.2.0",
     "koa-busboy": "^1.1.1",
     "koa-router": "^7.4.0",
