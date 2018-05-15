@@ -9,6 +9,20 @@ const logger = async(ctx, next) => {
     await next();
 }
 app.use(logger);
+//统一处理接口返回 格式
+app.use(async(ctx, next) => {
+    await next();
+    let { url, response } = ctx;
+    if (url.startsWith('/api')) {
+        ctx.body = {
+            status: 0,
+            msg: "success",
+            result: {
+                ...response.body
+            }
+        }
+    }
+})
 
 // 静态资源
 app.use(staticSource(require('path').join(__dirname, './static')))
@@ -16,26 +30,5 @@ app.use(staticSource(require('path').join(__dirname, './static')))
 app.use(bodyParser());
 
 app.use(Router.routes());
-
-app.use(async(ctx, next) => {
-    let url = ctx.url;
-    console.log(url)
-    let request = ctx.request;
-    let query = request.query;
-    let query_string = request.querystring;
-
-    let ctx_query = ctx.request;
-    let ctx_querystring = ctx.querystring;
-
-    ctx.body = {
-        url,
-        request,
-        query,
-        query_string,
-        ctx_query,
-        ctx_querystring
-    }
-
-})
 
 app.listen(3000)

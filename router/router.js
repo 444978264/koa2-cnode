@@ -42,6 +42,14 @@ Router.get('/upload', async(ctx, next) => {
     await next()
 })
 
+Router.get('/api/user/get_one', async(ctx, next) => {
+    ctx.response.body = {
+        user: 'cyf',
+        mobile: 15867777909
+    }
+    await next()
+})
+
 
 Router.post('/api/register', async(ctx, next) => {
     ctx.response.body = ctx.request.body

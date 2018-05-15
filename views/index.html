@@ -13,7 +13,15 @@
     这是一个koa 小 demo
 </body>
 <script>
-    alert(1212121212121)
+    var ctx = new XMLHttpRequest();
+    ctx.open('get', '/api/user/get_one');
+    ctx.send();
+    ctx.onreadystatechange = function() {
+        if (ctx.readyState == 4 && ctx.status == 200) {
+            //步骤五 如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的
+            console.log(JSON.parse(ctx.responseText)); //输入相应的内容
+        }
+    }
 </script>
 
 </html>
